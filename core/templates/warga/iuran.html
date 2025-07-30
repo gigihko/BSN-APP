@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Daftar Iuran</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-4">
+    <h3>Daftar Iuran Warga</h3>
+    <table class="table table-bordered bg-white">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Jenis</th>
+          <th>Jumlah</th>
+          <th>Status</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for iuran in iuran_list %}
+        <tr>
+          <td>{{ iuran.nama }}</td>
+          <td>{{ iuran.get_jenis_display }}</td>
+          <td>Rp{{ iuran.jumlah }}</td>
+          <td>
+            {% if iuran.id in iuran_terbayar_ids %}
+              <span class="badge bg-success">Sudah Dibayar</span>
+            {% else %}
+              <span class="badge bg-warning text-dark">Belum Bayar</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if iuran.id not in iuran_terbayar_ids %}
+              <a href="{% url 'unggah_bukti' iuran.id %}" class="btn btn-sm btn-primary">Upload Bukti</a>
+            {% else %}
+              <small>Tidak ada aksi</small>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

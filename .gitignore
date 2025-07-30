@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Env (virtual environment)
+env/
+venv/
+ENV/
+*.env
+
+# Django migrations
+*/migrations/
+!*/migrations/__init__.py
+
+# SQLite (jika pakai SQLite)
+*.sqlite3
+
+# VSCode / IDE
+.vscode/
+.idea/
+
+# Media / file upload
+/media/
+
+# Static collect (kalau nanti pakai collectstatic)
+staticfiles/
+
+# System files
+.DS_Store
+Thumbs.db
+``
