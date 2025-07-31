@@ -128,3 +128,7 @@ AUTH_USER_MODEL = 'core.User'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+LANGUAGE_CODE = 'id'
+
+LOGOUT_REDIRECT_URL = '/login/'
