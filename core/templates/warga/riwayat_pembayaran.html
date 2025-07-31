@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-4">
+  <h3>Riwayat Pembayaran</h3>
+  <div class="table-responsive">
+    <table class="table table-bordered bg-white">
+      <thead>
+        <tr>
+          <th>Tanggal</th>
+          <th>Jenis Iuran</th>
+          <th>Jumlah</th>
+          <th>Metode</th>
+          <th>Status</th>
+          <th>Bukti</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for bayar in pembayaran_list %}
+        <tr>
+          <td>{{ bayar.tanggal_bayar|date:"j F Y" }}</td>
+          <td>{{ bayar.iuran.get_jenis_display }}</td>
+          <td>Rp{{ bayar.iuran.jumlah }}</td>
+          <td>{{ bayar.metode }}</td>
+          <td>
+            {% if bayar.dikonfirmasi %}
+              <span class="badge bg-success">Dikonfirmasi</span>
+            {% else %}
+              <span class="badge bg-secondary">Menunggu</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if bayar.bukti_transfer %}
+              <a href="{{ bayar.bukti_transfer.url }}" target="_blank" class="btn btn-sm btn-outline-primary">Lihat</a>
+            {% else %}
+              <em>-</em>
+            {% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6" class="text-center">Belum ada pembayaran</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
