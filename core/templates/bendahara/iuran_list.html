@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}Daftar Iuran{% endblock %}
+
+{% block content %}
+<h1>Daftar Iuran</h1>
+
+<a href="{% url 'iuran_add' %}" class="btn btn-primary mb-3">Tambah Iuran Baru</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nama Iuran</th>
+            <th>Jumlah (Rp)</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for iuran in iuran_list %}
+        <tr>
+            <td>{{ iuran.id }}</td>
+            <td>{{ iuran.nama }}</td>
+            <td>{{ iuran.jumlah|intcomma }}</td>
+            <td>
+                <a href="{% url 'iuran_edit' iuran.id %}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{% url 'iuran_delete' iuran.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus iuran ini?');">Hapus</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Belum ada data iuran.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'bendahara_dashboard' %}">Kembali ke Dashboard Bendahara</a>
+{% endblock %}
