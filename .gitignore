@@ -33,3 +33,11 @@ staticfiles/
 .DS_Store
 Thumbs.db
 ``
+
+.env
+backup_bsnapp.sql
+bsnapp_data.json
+customer details.json
+data.json
+check_db.py
+migrate_sqlite_to_postgres.py

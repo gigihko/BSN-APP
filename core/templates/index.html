@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block title %}Dashboard Warga - BSN App{% endblock %}
+{% block content %}
+<h1>Rekap Pembayaran Iuran Warga</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Jenis Iuran</th>
+      <th>Jumlah (Rp)</th>
+      <th>Warga Bayar (%)</th>
+      <th>Warga Bayar (Jumlah)</th>
+      <th>Total Warga</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in summary %}
+    <tr>
+      <td>{{ item.iuran.nama }}</td>
+      <td>{{ item.iuran.jumlah|intcomma }}</td>
+      <td>{{ item.persentase_bayar }}%</td>
+      <td>{{ item.total_bayar }}</td>
+      <td>{{ item.total_warga }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p>Untuk detail transaksi per blok rumah, silakan hubungi Bendahara.</p>
+{% endblock %}
